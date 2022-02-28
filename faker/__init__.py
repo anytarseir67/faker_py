@@ -192,7 +192,7 @@ class Faker():
         return expanded
         
 
-    def _request(self, **kwargs) -> None:
+    def _request(self, **kwargs) -> typing.Union[dict, FakerResponse]:
         endpoint = kwargs.get('endpoint')
         expanded = self._expand(kwargs)
         cls = kwargs.get('cls')
