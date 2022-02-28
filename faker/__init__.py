@@ -464,7 +464,3 @@ class AioFaker():
 
         resp = await self._request(endpoint="users", quantity=quantity, seed=seed, locale=locale, gender=gender, json=json, cls=UserResponse)
         return resp
-
-x = Faker()
-y = x.image(quantity=2)
-print(y)
