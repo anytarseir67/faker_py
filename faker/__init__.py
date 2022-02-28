@@ -205,7 +205,7 @@ class Faker():
         if kwargs['quantity'] > 1:
             responses = []
             for x in resp['data']:
-                responses.append(cls)
+                responses.append(cls(x))
             return responses
         return cls(resp['data'][0])
 
@@ -340,7 +340,7 @@ class AioFaker():
         return expanded
         
 
-    async def _request(self, **kwargs) -> None:
+    async def _request(self, **kwargs) -> typing.Union[dict, FakerResponse]:
         endpoint = kwargs.get('endpoint')
         expanded = await self._expand(kwargs)
         cls = kwargs.get('cls')
@@ -357,7 +357,7 @@ class AioFaker():
         if kwargs['quantity'] > 1:
             responses = []
             for x in resp['data']:
-                responses.append(cls)
+                responses.append(cls(x))
             return responses
         return cls(resp['data'][0])
 
@@ -464,3 +464,7 @@ class AioFaker():
 
         resp = await self._request(endpoint="users", quantity=quantity, seed=seed, locale=locale, gender=gender, json=json, cls=UserResponse)
         return resp
+
+x = Faker()
+y = x.image(quantity=2)
+print(y)
